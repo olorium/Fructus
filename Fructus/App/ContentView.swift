@@ -9,11 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
 	// MARK: - Properties.
+	/// Used to present settings sheet.
+	@State private var isShowingSettings = false
 	/// Data to present.
 	private var fruits = FruitData.fruits
 	
 	// MARK: - Body.
-    var body: some View {
+	var body: some View {
 		NavigationView {
 			List {
 				ForEach(fruits.shuffled()) { fruit in
@@ -25,14 +27,21 @@ struct ContentView: View {
 					}
 				}
 			}
-			.listStyle(.plain)
 			.navigationTitle("Fruits")
+			.navigationBarItems(trailing: Button(action: {
+				isShowingSettings = true
+			}, label: {
+				Image(systemName: "slider.horizontal.3")
+			})
+				.sheet(isPresented: $isShowingSettings) { SettingsView() }
+			)
 		}
-    }
+		.navigationViewStyle(StackNavigationViewStyle())
+	}
 }
 
 struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+	static var previews: some View {
+		ContentView()
+	}
 }
