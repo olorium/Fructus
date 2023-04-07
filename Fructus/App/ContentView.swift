@@ -8,14 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+	// MARK: - Properties.
+	/// Data to present.
+	private var fruits = FruitData.fruits
+	
+	// MARK: - Body.
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+		NavigationView {
+			List {
+				ForEach(fruits.shuffled()) { fruit in
+					NavigationLink {
+						FruitDetailView(fruit: fruit)
+					} label: {
+						FruitRowView(fruit: fruit)
+							.padding(.vertical, 4)
+					}
+				}
+			}
+			.listStyle(.plain)
+			.navigationTitle("Fruits")
+		}
     }
 }
 
