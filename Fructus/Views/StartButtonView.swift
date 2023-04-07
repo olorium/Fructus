@@ -10,11 +10,13 @@ import SwiftUI
 /// The button for onboarding cars.
 struct StartButtonView: View {
 	// MARK: - Properties
+	/// Switch to `false` to finish onboarding.
+	@AppStorage("isOnboarding") var isOnboarding: Bool?
 	
 	// MARK: - Body
     var body: some View {
 		Button {
-			
+			isOnboarding = false
 		} label: {
 			HStack(spacing: 8) {
 				Text("Start")
