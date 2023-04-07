@@ -1,6 +1,6 @@
-#Fructus is fruits virtual library!
+# Fructus is fruits virtual library!
 
-##Features:
+## Features:
 - SwuftUI & iOS 14
 - SwiftUI animations.
 - Onboarding screen with page carousel (Page Tab View)
